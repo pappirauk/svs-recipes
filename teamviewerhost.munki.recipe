@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <recipe>
-    <identifier>com.github.username.munki.teamviewerhost</identifier>
+    <identifier>com.github.pappirauk.munki.teamviewerhost</identifier>
     <description>Downloads the latest TeamViewer Host and imports it into Munki with Configuration ID and Assignment ID.</description>
     <minimum_version>1.0</minimum_version>
 
