@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<recipe>
+    <identifier>com.github.username.munki.teamviewerhost</identifier>
+    <description>Downloads the latest TeamViewer Host and imports it into Munki with Configuration ID and Assignment ID.</description>
+    <minimum_version>1.0</minimum_version>
+
+    <input>
+        <key>NAME</key>
+        <string>TeamViewerHost</string>
+        <key>CONFIGURATION_ID</key>
+        <string>YOUR_CONFIGURATION_ID</string> <!-- Sätt din Configuration ID här -->
+        <key>ASSIGNMENT_ID</key>
+        <string>YOUR_ASSIGNMENT_ID</string> <!-- Sätt din Assignment ID här -->
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/TeamViewerHost</string>
+    </input>
+
+    <process>
+        <processor>URLDownloader</processor>
+        <arguments>
+            <dict>
+                <key>url</key>
+                <string>https://download.teamviewer.com/download/TeamViewerHost.dmg</string> <!-- TeamViewer Host download URL -->
+                <key>filename</key>
+                <string>TeamViewerHost.dmg</string>
+            </dict>
+        </arguments>
+    </process>
+
+    <process>
+        <processor>DmgMounter</processor>
+        <arguments>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+            </dict>
+        </arguments>
+    </process>
+
+    <process>
+        <processor>PkgCopier</processor>
+        <arguments>
+            <dict>
+                <key>source_pkg</key>
+                <string>/Volumes/TeamViewerHost/Install TeamViewerHost.pkg</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/TeamViewerHost.pkg</string>
+            </dict>
+        </arguments>
+    </process>
+
+    <!-- Lägg till konfigurationsfilerna -->
+    <process>
+        <processor>PlistEditor</processor>
+        <arguments>
+            <dict>
+                <key>plist_path</key>
+                <string>/Library/Application Support/TeamViewerHost/TeamViewerHostConfig.plist</string>
+                <key>plist_data</key>
+                <dict>
+                    <key>AssignmentID</key>
+                    <string>%ASSIGNMENT_ID%</string>
+                    <key>ConfigurationID</key>
+                    <string>%CONFIGURATION_ID%</string>
+                </dict>
+            </dict>
+        </arguments>
+    </process>
+
+    <!-- Munki import -->
+    <process>
+        <processor>MunkiImporter</processor>
+        <arguments>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/TeamViewerHost.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+                <key>pkginfo</key>
+                <dict>
+                    <key>name</key>
+                    <string>TeamViewerHost</string>
+                    <key>display_name</key>
+                    <string>TeamViewer Host</string>
+                    <key>version</key>
+                    <string>%%version%%</string>
+                    <key>description</key>
+                    <string>TeamViewer Host for remote management</string>
+                </dict>
+            </dict>
+        </arguments>
+    </process>
+
+    <process>
+        <processor>DmgUnmount</processor>
+        <arguments>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+            </dict>
+        </arguments>
+    </process>
+</recipe>
