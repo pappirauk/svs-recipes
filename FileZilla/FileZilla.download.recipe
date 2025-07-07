@@ -31,7 +31,7 @@
 				</dict>
 			</dict>
 			<key>Processor</key>
-			<string>URLTextSearcher</string>
+			<string>RenderedURLTextSearcher</string>
 		</dict>
 		<dict>
 			<key>Processor</key>
