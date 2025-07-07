@@ -107,4 +107,4 @@ class RenderedURLTextSearcher(Processor):
 
 if __name__ == "__main__":
     processor = RenderedURLTextSearcher()
-    processor.execute_shell()v
+    processor.execute_shell()
