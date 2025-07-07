@@ -31,7 +31,7 @@
 				</dict>
 			</dict>
 			<key>Processor</key>
-			<string>RenderedURLTextSearcher</string>
+			<string>com.github.pappirauk.FileZilla.download/RenderedURLTextSearcher</string>
 		</dict>
 		<dict>
 			<key>Processor</key>
