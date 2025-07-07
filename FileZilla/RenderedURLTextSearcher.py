@@ -71,8 +71,6 @@ class RenderedURLTextSearcher(Processor):
             content = await page.content()
             await browser.close()
             return content
-    
-    print(content)
 
     def re_search(self, content: str) -> tuple[str, dict[str, str]] | None:
         """Search for re_pattern in content"""
@@ -96,7 +94,7 @@ class RenderedURLTextSearcher(Processor):
             )
         except Exception as e:
             raise ProcessorError(f"Playwright error while loading {url}: {e}")
-
+        print(content)
         groupmatch, groupdict = self.re_search(content)
 
         # Favor a named group over unnamed match
