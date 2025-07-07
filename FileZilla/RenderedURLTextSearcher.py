@@ -64,6 +64,7 @@ class RenderedURLTextSearcher(Processor):
 
     async def fetch_page_content(self, url: str, wait_until: str, timeout: int) -> str:
         """Use Playwright to render and extract HTML from the given URL."""
+        print(url)
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             page = await browser.new_page()
