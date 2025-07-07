@@ -103,7 +103,7 @@ class RenderedURLTextSearcher(Processor):
             )
         except Exception as e:
             raise ProcessorError(f"Playwright error while loading {url}: {e}")
-        print(content)
+        
         groupmatch, groupdict = self.re_search(content)
 
         # Favor a named group over unnamed match
