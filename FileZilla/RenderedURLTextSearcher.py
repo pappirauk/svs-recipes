@@ -71,6 +71,8 @@ class RenderedURLTextSearcher(Processor):
             content = await page.content()
             await browser.close()
             return content
+    
+    print(content)
 
     def re_search(self, content: str) -> tuple[str, dict[str, str]] | None:
         """Search for re_pattern in content"""
