@@ -2,6 +2,7 @@
 
 import re
 import asyncio
+import html
 
 from autopkglib import Processor, ProcessorError
 
@@ -105,6 +106,10 @@ class RenderedURLTextSearcher(Processor):
             raise ProcessorError(f"Playwright error while loading {url}: {e}")
         
         groupmatch, groupdict = self.re_search(content)
+
+        for key, value in groupdict.items():
+            if isinstance(value, str):
+                groupdict[key] = html.unescape(value)
 
         # Favor a named group over unnamed match
         if output_var_name not in groupdict:
