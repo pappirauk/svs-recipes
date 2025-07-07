@@ -63,15 +63,23 @@ class RenderedURLTextSearcher(Processor):
         return flag_accumulator
 
     async def fetch_page_content(self, url: str, wait_until: str, timeout: int) -> str:
-        """Use Playwright to render and extract HTML from the given URL."""
-        print(url)
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            page = await browser.new_page()
-            await page.goto(url, wait_until=wait_until, timeout=timeout)
-            content = await page.content()
-            await browser.close()
-            return content
+    """Use Playwright to render and extract HTML from the given URL."""
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+
+        # Ange user-agent manuellt
+        user_agent = self.env.get(
+            "user_agent",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
+        )
+
+        context = await browser.new_context(user_agent=user_agent)
+        page = await context.new_page()
+
+        await page.goto(url, wait_until=wait_until, timeout=timeout)
+        content = await page.content()
+        await browser.close()
+        return content
 
     def re_search(self, content: str) -> tuple[str, dict[str, str]] | None:
         """Search for re_pattern in content"""
