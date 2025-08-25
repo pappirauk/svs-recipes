@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTE: This recipe requires Playwright to be installed on the machine running AutoPkg.
+     See https://playwright.dev/docs/intro#installing-playwright for installation instructions. -->
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
