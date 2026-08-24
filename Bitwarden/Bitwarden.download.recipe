@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest official Bitwarden universal DMG for macOS and verifies its code signature.</string>
 	<key>Identifier</key>
-	<string>se.svenskaspel.autopkg.download.Bitwarden</string>
+	<string>com.github.pappirauk.download.Bitwarden</string>
 	<key>Input</key>
 	<dict>
 		<key>GITHUB_REPO</key>
