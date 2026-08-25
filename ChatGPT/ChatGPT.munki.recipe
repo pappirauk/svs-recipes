@@ -19,7 +19,6 @@
 			<key>catalogs</key>
 			<array>
 				<string>testing</string>
-				<string>production</string>
 			</array>
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
