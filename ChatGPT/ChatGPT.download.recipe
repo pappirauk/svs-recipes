@@ -11,7 +11,7 @@
 		<key>NAME</key>
 		<string>ChatGPT</string>
 		<key>DOWNLOAD_URL</key>
-		<string>https://persistent.oaistatic.com/sidekick/public/ChatGPT.dmg</string>
+		<string>https://persistent.oaistatic.com/codex-app-prod/ChatGPT.dmg</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.3.1</string>
